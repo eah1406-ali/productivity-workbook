@@ -177,7 +177,7 @@ const ACTS=[
  intro:"اكتب 6–8 مهام تشغل ذهنك الآن، دراسية أو شخصية أو مهنية، كما هي دون ترتيب.",
  main:"لدي قائمة المهام التالية: [الصق المهام]. صنّفها إلى: مهم وعاجل، مهم وغير عاجل، يمكن تفويضه، يمكن تأجيله أو حذفه. ثم اقترح لي أول ثلاث خطوات عملية لليوم، مع تفسير مختصر للترتيب.",
  guide:["رتّب المهام التالية بحسب الأولوية، وبيّن لي لماذا وضعت كل مهمة في موقعها: [اكتب مهامك].","قبل أن ترتب المهام، اسألني عن أي موعد نهائي أو التزام قد يغيّر الأولويات.","اختصر الخطة إلى أهم 3 خطوات فقط أستطيع البدء بها اليوم.","راجع ترتيبك مرة أخرى وحدد مهمة واحدة يمكنني تأجيلها أو حذفها دون أثر كبير."],
- blocks:[{t:"field",id:"tasks",label:"قائمة المهام الحالية",rows:5,sub:"انسخها من هنا إلى خانة [الصق المهام] في المطالبة"},
+ blocks:[{t:"field",pre:1,id:"tasks",map:["الصق المهام","اكتب مهامك"],label:"قائمة المهام الحالية",rows:5,sub:"اكتبها هنا وتنتقل تلقائيًا إلى المطالبة"},
   {t:"result",id:"res",label:"نتيجة الذكاء الاصطناعي"},
   {t:"field",id:"chg",label:"ما الذي تغيّر في ترتيب الأولويات؟",rows:3},
   {t:"field",id:"drop",label:"ما الذي يمكن تأجيله أو تفويضه أو حذفه؟",rows:3},
@@ -186,23 +186,22 @@ const ACTS=[
  intro:"اختر مهمة كبيرة أو مشروعًا مؤجلًا لديك، وفكّكه إلى خطوات صغيرة قابلة للإنجاز.",
  main:"لدي هذه المهمة: [اكتب المهمة]. الموعد النهائي: [التاريخ]. الوقت المتاح لي أسبوعيًا: [عدد الساعات]. قسّم المهمة إلى خطوات صغيرة مرتبة، وحدد لكل خطوة مدة تقديرية، وابدأ بأصغر خطوة يمكن تنفيذها خلال 15 دقيقة.",
  guide:["قسّم هذه المهمة الكبيرة إلى خطوات صغيرة قابلة للتنفيذ: [اكتب المهمة].","ابدأ بأصغر خطوة يمكن تنفيذها خلال 15 دقيقة، ثم رتّب بقية الخطوات بعدها.","قدّر الوقت المتوقع لكل خطوة مع إضافة هامش واقعي للطوارئ.","راجع الخطة وحدد أي خطوة ما زالت كبيرة أو غامضة، ثم فككها أكثر."],
- blocks:[{t:"field",id:"task",label:"المهمة / المشروع",rows:2},
+ blocks:[{t:"field",pre:1,id:"task",map:["اكتب المهمة"],label:"المهمة / المشروع",rows:2,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"due",map:["التاريخ"],label:"الموعد النهائي",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"hrs",map:["عدد الساعات"],label:"الوقت المتاح لي أسبوعيًا (بالساعات)",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},
   {t:"result",id:"res",label:"نتيجة الذكاء الاصطناعي",sub:"إن جاءت جدولًا فسيُنسَّق تلقائيًا"},
   {t:"table",id:"steps",label:"خطتي بعد التعديل",cols:["الخطوة","المدة التقديرية","الأولوية","موعد التنفيذ"],rows:5,add:true},
   {t:"checks",id:"test",label:"اختبار الواقعية",items:["هل الخطة تناسب وقتي فعلًا؟","هل فيها هامش للطوارئ؟","هل أول خطوة واضحة بما يكفي لأبدأ دون تردد؟"]}]},
 {id:"a3",short:"أسبوعي",ext:true,tag:"النشاط 3",title:"صمّم أسبوعك بذكاء",axis:"امتداد · بعد الورشة",min:"اختياري",p:"P03",
  intro:"لا نبحث عن جدول مثالي، بل عن أسبوع واقعي يوازن بين الالتزامات والطاقة والأولويات.",
- main:"هذه التزاماتي الثابتة: [اكتبها]. وهذه أولوياتي لهذا الأسبوع: [اكتبها]. صمّم لي جدولًا أسبوعيًا واقعيًا، مع فترات تركيز، وفترات للمهام الخفيفة، وهامش للطوارئ. لا تملأ كل وقت الفراغ.",
- guide:["هذه التزاماتي الثابتة وأولوياتي لهذا الأسبوع: [اكتبها]. صمّم لي أسبوعًا واقعيًا.","وزّع المهام بحسب مستوى التركيز: عميق، متوسط، خفيف.","اترك لي وقتًا للطوارئ والراحة، ولا تملأ جميع ساعات الأسبوع.","راجع الجدول وحدد أكثر يوم مزدحم، ثم أعد توزيعه بطريقة أكثر واقعية."],
- blocks:[{t:"result",id:"res",label:"الجدول الناتج",sub:"الصقه هنا ليظهر منسقًا"},
+ main:"هذه التزاماتي الثابتة: [التزاماتي]. وهذه أولوياتي لهذا الأسبوع: [أولوياتي]. صمّم لي جدولًا أسبوعيًا واقعيًا، مع فترات تركيز، وفترات للمهام الخفيفة، وهامش للطوارئ. لا تملأ كل وقت الفراغ.",
+ guide:["هذه التزاماتي الثابتة: [التزاماتي]. وأولوياتي لهذا الأسبوع: [أولوياتي]. صمّم لي أسبوعًا واقعيًا.","وزّع المهام بحسب مستوى التركيز: عميق، متوسط، خفيف.","اترك لي وقتًا للطوارئ والراحة، ولا تملأ جميع ساعات الأسبوع.","راجع الجدول وحدد أكثر يوم مزدحم، ثم أعد توزيعه بطريقة أكثر واقعية."],
+ blocks:[{t:"field",pre:1,id:"fixed",map:["التزاماتي"],label:"التزاماتي الثابتة (دراسة، عمل، مواصلات…)",rows:3,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"prio",map:["أولوياتي"],label:"أولوياتي لهذا الأسبوع",rows:3,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"result",id:"res",label:"الجدول الناتج",sub:"الصقه هنا ليظهر منسقًا"},
   {t:"table",id:"week",label:"أسبوعي",cols:["اليوم","أهم مهمة","وقت التركيز","مهمة خفيفة / احتياط"],fixed:["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"]}],
  closing:"قاعدة الورشة: لا تملأ كل دقيقة. الخطة الجيدة تترك مساحة للحياة الحقيقية."},
 {id:"a4",short:"تحسين",tag:"النشاط 4",title:"من مدخلات مبعثرة إلى مخرج احترافي",axis:"المحور الثالث · رفع كفاءة الإنجاز",min:"12 دقيقة",p:"P04",
  intro:"اختر نصًا أو ملاحظات أو أفكارًا لديك فعلًا: بريد، تقرير، تكليف، ملخص، عرض، أو رسالة مهنية.",
  main:"هذه مسودة أولية لمهمة [حدد النوع]: [الصق النص]. الجمهور المستهدف: [حدد الجمهور]. الهدف: [حدد الهدف]. أعد تنظيمها وتحسين وضوحها واختصارها مع الحفاظ على المعنى، ثم اذكر أهم 3 تغييرات أجريتها.",
  guide:["هذه مسودتي: [الصق النص]. حسّن تنظيمها ووضوحها مع الحفاظ على المعنى.","قبل التعديل، اسألني عن الجمهور والهدف من النص حتى تصبح الصياغة أكثر ملاءمة.","أنشئ نسخة مختصرة وأكثر مهنية من المسودة، ثم وضّح أهم التغييرات.","قارن بين المسودة الأصلية والنسخة المحسنة، وحدد 3 أشياء تعلمتها لتحسين كتابتي مستقبلًا."],
- blocks:[{t:"field",id:"type",label:"نوع المهمة",rows:1},
-  {t:"field",id:"raw",label:"المدخل الخام أو وصفه",rows:4},
+ blocks:[{t:"field",pre:1,id:"type",map:["حدد النوع"],label:"نوع المهمة (بريد، تقرير، ملخص…)",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"raw",map:["الصق النص"],label:"المدخل الخام أو وصفه",rows:4,sub:"الصق مسودتك هنا"},{t:"field",pre:1,id:"aud",map:["حدد الجمهور"],label:"الجمهور المستهدف",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"goal",map:["حدد الهدف"],label:"الهدف من النص",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},
   {t:"result",id:"res",label:"نتيجة الذكاء الاصطناعي"},
   {t:"field",id:"imp",label:"ما الذي حسّنه الذكاء الاصطناعي؟",rows:3},
   {t:"field",id:"me",label:"ما الذي احتاج تدخلًا مني؟",rows:3},
@@ -211,21 +210,21 @@ const ACTS=[
  intro:"استخدم الذكاء الاصطناعي «مراجعًا» لا «كاتبًا بديلًا». أعطه مخرج النشاط السابق واطلب نقده وفق معايير واضحة.",
  main:"راجع المخرج السابق بوصفك مراجعًا مهنيًا. قيّمه من حيث الوضوح، الدقة، الاختصار، وملاءمة الجمهور. لا تعِد كتابته مباشرة؛ أعطني الملاحظات أولًا، ثم اقترح تعديلات محددة.",
  guide:["راجع هذا المخرج من حيث الوضوح والدقة والاختصار وملاءمة الجمهور: [الصق المخرج].","لا تعد كتابة النص الآن؛ أعطني أولًا أهم 3 ملاحظات تحسين فقط.","رتّب ملاحظاتك من الأكثر أثرًا إلى الأقل أثرًا، وفسّر سبب كل ملاحظة.","بعد المراجعة، اقترح نسخة محسنة تطبق الملاحظات التي وافقت عليها فقط."],
- blocks:[{t:"result",id:"res",label:"ملاحظات المراجع"},
+ blocks:[{t:"field",pre:1,id:"out",map:["الصق المخرج"],label:"المخرج الذي سأراجعه",rows:4,sub:"اكتب أو الصق مخرجك هنا",from:"a4.final",fromLabel:"استخدم نسختي النهائية من النشاط 4"},{t:"result",id:"res",label:"ملاحظات المراجع"},
   {t:"table",id:"crit",label:"قراري في كل معيار",cols:["المعيار","ملاحظة المراجع","قراري"],fixed:["الوضوح","الدقة","الاختصار","ملاءمة الجمهور"]}],
  closing:"ليس كل اقتراح من الذكاء الاصطناعي تحسينًا. القرار النهائي لك."},
 {id:"a6",short:"مساري",ext:true,tag:"النشاط 6",title:"ابنِ مسار تعلم شخصي",axis:"امتداد · بعد الورشة",min:"اختياري",p:"P06",
  intro:"اختر مهارة واحدة تحتاجها خلال الأشهر القادمة، لا مهارة عامة جدًا.",
  main:"أريد تعلم مهارة [اسم المهارة]. مستواي الحالي: [صفه]. هدفي خلال [مدة زمنية]: [الهدف]. ابنِ لي مسار تعلم على مراحل، ولكل مرحلة: ما الذي أتعلمه، تطبيق عملي، ودليل واضح يثبت أنني أتقنتها.",
  guide:["أريد تعلم مهارة [اكتب المهارة]. مستواي الحالي [صفه]. ابنِ لي مسار تعلم تدريجيًا.","قسّم المسار إلى مراحل، واجعل لكل مرحلة تطبيقًا عمليًا ودليلًا على الإتقان.","عدّل الخطة بحيث تناسب وقتًا أسبوعيًا قدره [عدد] ساعات فقط.","راجع الخطة واحذف أي جزء نظري لا يخدمني مباشرة في الوصول إلى هدفي."],
- blocks:[{t:"field",id:"skill",label:"المهارة",rows:1},{t:"field",id:"lvl",label:"مستواي الحالي",rows:1},{t:"field",id:"goal",label:"المستوى الذي أريد الوصول إليه",rows:1},
+ blocks:[{t:"field",pre:1,id:"skill",map:["اسم المهارة","اكتب المهارة"],label:"المهارة",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"lvl",map:["صفه"],label:"مستواي الحالي",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"goal",map:["الهدف"],label:"المستوى الذي أريد الوصول إليه",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"dur",map:["مدة زمنية"],label:"المدة الزمنية",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"wk",map:["عدد"],label:"الوقت الأسبوعي المتاح (بالساعات)",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},
   {t:"result",id:"res",label:"خطة التعلم الناتجة"},
   {t:"table",id:"plan",label:"مساري بعد التعديل",cols:["المرحلة","ما الذي سأتعلمه؟","دليل إتقان المرحلة"],fixed:["1","2","3","4"]}]},
 {id:"a7",short:"تعلمي",tag:"النشاط 7",title:"حوّل الذكاء الاصطناعي إلى مدرّب شخصي",axis:"المحور الرابع · التعلم وتطوير المهارات",min:"8 دقائق",p:"P07",
  intro:"اجعله يشرح لك مفهومًا صعبًا، ثم يختبر فهمك، ثم يغيّر طريقة الشرح إذا أخطأت.",
  main:"اشرح لي مفهوم [اسم المفهوم] بطريقة مبسطة تناسب مستواي. بعد الشرح لا تعطِني مزيدًا من المعلومات؛ اسألني 3 أسئلة متدرجة. بناءً على إجاباتي، حدد نقطة الضعف وأعد شرحها بطريقة مختلفة.",
  guide:["اشرح لي مفهوم [اكتب المفهوم] بطريقة بسيطة تناسب مستواي.","بعد الشرح، اسألني 3 أسئلة متدرجة ولا تعطِني الإجابات حتى أجيب.","إذا أخطأت، حدّد موضع الخطأ وأعد الشرح بطريقة مختلفة مع مثال.","في النهاية أعطني سؤالًا تطبيقيًا جديدًا يقيس الفهم لا الحفظ."],
- blocks:[{t:"field",id:"concept",label:"المفهوم الذي سأتعلمه",rows:1},
+ blocks:[{t:"field",pre:1,id:"concept",map:["اسم المفهوم","اكتب المفهوم"],label:"المفهوم الذي سأتعلمه",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},
   {t:"field",id:"weak",label:"أكثر نقطة لم أفهمها في الشرح الأول",rows:2},
   {t:"field",id:"err",label:"السؤال الذي أخطأت فيه أو ترددت فيه",rows:2},
   {t:"field",id:"after",label:"كيف تغيّر فهمي بعد إعادة الشرح؟",rows:3}]},
@@ -233,7 +232,7 @@ const ACTS=[
  intro:"اختر إعلانًا وظيفيًا حقيقيًا يهمك. لا نبحث عن وظيفة مثالية؛ نبحث عن فرصة تكشف لك ما يحتاجه السوق.",
  main:"هذا وصف وظيفي: [الصق الوصف]. استخرج المهارات والمتطلبات الأساسية، وصنفها إلى: ضرورية، مفضلة، ويمكن تعلمها سريعًا. ثم أنشئ جدول فجوات أضع فيه ما أمتلكه وما أحتاج تطويره خلال 30 يومًا.",
  guide:["حلّل هذا الوصف الوظيفي واستخرج أهم المهارات والمتطلبات: [الصق الوصف].","صنّف المتطلبات إلى: ضرورية، مفضلة، ويمكن تطويرها بسرعة.","قارن المتطلبات بمهاراتي الحالية التالية: [اكتب مهاراتك] وحدد الفجوات.","ابنِ لي خطة تطوير لمدة 30 يومًا تركز على أهم فجوتين فقط."],
- blocks:[{t:"field",id:"job",label:"المسمى الوظيفي",rows:1},
+ blocks:[{t:"field",pre:1,id:"job",label:"المسمى الوظيفي",rows:1},{t:"field",pre:1,id:"desc",map:["الصق الوصف"],label:"الوصف الوظيفي",rows:5,sub:"الصقه هنا وينتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"sk",map:["اكتب مهاراتك"],label:"مهاراتي الحالية",rows:3,sub:"اختيارية: تُستخدم في المطالبة الإرشادية الثالثة"},
   {t:"result",id:"res",label:"نتيجة الذكاء الاصطناعي",sub:"جدول الفجوات سيُنسَّق تلقائيًا"},
   {t:"table",id:"gap",label:"جدول فجواتي",cols:["المتطلب","هل أمتلكه؟","خطوة تطويرية"],rows:6,add:true},
   {t:"field",id:"big",label:"أهم فجوة سأعمل عليها خلال 30 يومًا",rows:2}]},
@@ -241,16 +240,14 @@ const ACTS=[
  intro:"اجعل الذكاء الاصطناعي يؤدي دور مسؤول التوظيف. أجب بصوتك أو كتابةً، ثم اطلب تغذية راجعة محددة.",
  main:"قم بدور مسؤول توظيف لوظيفة [المسمى]. اسألني سؤالًا واحدًا في كل مرة، وانتظر إجابتي. بعد كل إجابة أعطني ملاحظة واحدة فقط للتحسين، ثم انتقل للسؤال التالي. اجعل الأسئلة مناسبة لخريج أو حديث التخرج.",
  guide:["قم بدور مسؤول توظيف لوظيفة [المسمى] واسألني سؤالًا واحدًا في كل مرة.","بعد كل إجابة أعطني ملاحظة واحدة محددة للتحسين ثم انتقل للسؤال التالي.","إذا كانت إجابتي عامة، اطلب مني مثالًا واقعيًا يدعمها.","بعد 5 أسئلة، لخّص أقوى نقطتين لدي وأهم نقطتين أحتاج تطويرهما."],
- blocks:[{t:"field",id:"q",label:"السؤال الأصعب الذي وُجّه لي",rows:2},
+ blocks:[{t:"field",pre:1,id:"title",map:["المسمى"],label:"المسمى الوظيفي المستهدف",rows:1,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",id:"q",label:"السؤال الأصعب الذي وُجّه لي",rows:2},
   {t:"field",id:"a",label:"إجابتي المختصرة",rows:3},
   {t:"field",id:"fb",label:"أهم ملاحظة تحسين حصلت عليها",rows:2}]},
 {id:"a10",short:"مساعدي",tag:"النشاط 10",title:"صمّم مساعدك الشخصي",axis:"المحور السادس · بناء مساعد شخصي للإنتاجية",min:"10 دقائق",p:"P10",
  intro:"اكتب مواصفات المساعد الذي تحتاجه أنت، لا مساعدًا عامًا للجميع.",
  main:"أريد بناء مساعد شخصي للإنتاجية. دوره الأساسي: [الدور]. أهدافي: [الأهداف]. أكثر المهام التي أحتاج المساعدة فيها: [المهام]. أسلوبي المفضل: [الأسلوب]. الأشياء التي لا أريد منه فعلها: [الحدود]. اكتب لي تعليمات تأسيسية واضحة وقصيرة أستطيع استخدامها مع أي محادثة جديدة.",
  guide:["ساعدني في تصميم مساعد شخصي للإنتاجية يناسب أهدافي وطريقة عملي.","اسألني 4 أسئلة فقط تحدد دوره، أهدافي، المهام التي يساعدني فيها، والحدود التي أريدها.","اكتب لي تعليمات تأسيسية قصيرة وواضحة أستطيع نسخها في بداية أي محادثة.","راجع التعليمات واختصرها دون فقدان أي قاعدة مهمة، وتأكد أنها لا تتضمن بيانات شخصية حساسة."],
- blocks:[{t:"field",id:"role",label:"دوره الأساسي",rows:2},{t:"field",id:"goals",label:"أهدافي التي يجب أن يعرفها",rows:2},
-  {t:"field",id:"tasks",label:"نوع المهام التي يساعدني فيها",rows:2},{t:"field",id:"style",label:"الأسلوب الذي أفضله",rows:2},
-  {t:"field",id:"limits",label:"ما الذي يجب ألا يفعله",rows:2},
+ blocks:[{t:"field",pre:1,id:"role",map:["الدور"],label:"دوره الأساسي",rows:2,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"goals",map:["الأهداف"],label:"أهدافي التي يجب أن يعرفها",rows:2,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"tasks",map:["المهام"],label:"نوع المهام التي يساعدني فيها",rows:2,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"style",map:["الأسلوب"],label:"الأسلوب الذي أفضله",rows:2,sub:"تنتقل تلقائيًا إلى المطالبة"},{t:"field",pre:1,id:"limits",map:["الحدود"],label:"ما الذي يجب ألا يفعله",rows:2,sub:"تنتقل تلقائيًا إلى المطالبة"},
   {t:"result",id:"res",label:"التعليمات النهائية لمساعدي",sub:"الصقها هنا واحتفظ بنسخة في ملاحظات جوالك"}]}
 ];
 
@@ -277,7 +274,17 @@ async function copyText(txt){
 }
 
 /* ============ المطالبة بحقول قابلة للتعبئة ============ */
-function promptCard(actId,text,label,numLabel){
+const FIELDS=[];
+function related(key){const s=new Set([key]);FIELDS.forEach(f=>{if(f.keys.includes(key))f.keys.forEach(k=>s.add(k))});return[...s]}
+function propagate(key,val,src){
+  const rel=related(key);
+  rel.forEach(k=>{S[k]=val;
+    document.querySelectorAll(".chip").forEach(c=>{if(c.dataset.key===k&&c!==src){c.textContent=val;c.classList.toggle("filled",!!val.trim())}})});
+  FIELDS.forEach(f=>{if(f.el!==src&&f.keys.some(k=>rel.includes(k))){f.el.value=val;f.pv.textContent=val;grow(f.el)}});
+  save();
+}
+const chipVal=c=>c.textContent;
+function promptCard(actId,text,label){
   const card=document.createElement("div");card.className="card";
   const head=document.createElement("div");head.className="ptag";
   head.innerHTML=`<span>${label}</span>`;
@@ -285,22 +292,24 @@ function promptCard(actId,text,label,numLabel){
   head.appendChild(btn);card.appendChild(head);
   const p=document.createElement("p");p.className="ptext";
   let last=0,m;BR.lastIndex=0;
-  const pushText=t=>{if(t)p.appendChild(document.createTextNode(t))};
+  const pushText=x=>{if(x)p.appendChild(document.createTextNode(x))};
   while((m=BR.exec(text))){
     pushText(text.slice(last,m.index));
     const key=actId+".chip."+m[1];
-    const c=document.createElement("span");c.className="chip";c.contentEditable="true";c.dataset.ph=m[1];c.dataset.key=key;c.setAttribute("role","textbox");c.setAttribute("aria-label",m[1]);
+    const c=document.createElement("span");c.className="chip";c.dataset.ph=m[1];c.dataset.key=key;c.setAttribute("role","textbox");c.setAttribute("aria-label",m[1]);
+    try{c.contentEditable="plaintext-only"}catch(e){}
+    if(c.contentEditable!=="plaintext-only")c.contentEditable="true";
     c.textContent=get(key,"");if(c.textContent)c.classList.add("filled");
-    c.addEventListener("input",()=>{c.classList.toggle("filled",!!c.textContent.trim());set(key,c.textContent);
-      document.querySelectorAll(`.chip[data-key="${CSS.escape(key)}"]`).forEach(o=>{if(o!==c){o.textContent=c.textContent;o.classList.toggle("filled",!!c.textContent.trim())}})});
-    c.addEventListener("paste",e=>{e.preventDefault();const t=(e.clipboardData||window.clipboardData).getData("text");document.execCommand("insertText",false,t)});
+    c.addEventListener("input",()=>{const v=chipVal(c);c.classList.toggle("filled",!!v.trim());propagate(key,v,c)});
+    c.addEventListener("paste",e=>{e.preventDefault();document.execCommand("insertText",false,(e.clipboardData||window.clipboardData).getData("text"))});
     c.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey)e.preventDefault()});
     p.appendChild(c);last=m.index+m[0].length;
   }
   pushText(text.slice(last));card.appendChild(p);
   btn.addEventListener("click",async()=>{
-    let out="";p.childNodes.forEach(n=>{if(n.nodeType===3)out+=n.textContent;else out+=n.textContent.trim()||"["+n.dataset.ph+"]"});
-    const ok=await copyText(out);btn.textContent=ok?"تم النسخ ✓":"حدّد النص وانسخه";toast(ok?"نُسخت المطالبة. الصقها في أداتك":"تعذّر النسخ التلقائي");
+    let out="",empty=0;p.childNodes.forEach(n=>{if(n.nodeType===3)out+=n.textContent;else{const v=chipVal(n).trim();if(!v)empty++;out+=v||"["+n.dataset.ph+"]"}});
+    const ok=await copyText(out);btn.textContent=ok?"تم النسخ ✓":"تعذّر النسخ";
+    toast(!ok?"حدّد النص يدويًا وانسخه":empty?"نُسخت، لكن بقيت "+empty+" خانة فارغة. عبّئها أولًا للحصول على نتيجة أدق":"نُسخت المطالبة. الصقها في أداتك");
     setTimeout(()=>btn.textContent="نسخ",1800);
   });
   return card;
@@ -337,12 +346,17 @@ function renderResult(txt){
 
 /* ============ كتل الصفحة ============ */
 function fieldBlock(a,b){
-  const k=a.id+"."+b.id,w=document.createElement("div");
+  const keys=b.map?b.map.map(l=>a.id+".chip."+l):[a.id+"."+b.id];const k=keys[0];
+  const w=document.createElement("div");
   w.innerHTML=`<label class="fl" for="${k}">${b.label}${b.sub?`<span class="sub">${b.sub}</span>`:""}</label>`;
   const t=document.createElement("textarea");t.id=k;t.rows=b.rows||3;t.value=get(k);
   const pv=document.createElement("div");pv.className="pv";pv.textContent=t.value;
-  t.addEventListener("input",()=>{set(k,t.value);pv.textContent=t.value;grow(t)});
-  w.append(t,pv);setTimeout(()=>grow(t),0);return w;
+  if(b.map){FIELDS.push({el:t,pv,keys});t.addEventListener("input",()=>{propagate(k,t.value,t);pv.textContent=t.value;grow(t)})}
+  else t.addEventListener("input",()=>{set(k,t.value);pv.textContent=t.value;grow(t)});
+  w.append(t,pv);
+  if(b.from){const bt=document.createElement("button");bt.type="button";bt.className="btn ghost sm noprint";bt.textContent=b.fromLabel||"استخدام نسختي السابقة";bt.style.marginTop="8px";
+    bt.addEventListener("click",()=>{const v=get(b.from,"");if(!v.trim()){toast("لم تكتب النسخة النهائية في النشاط 4 بعد");return}t.value=v;t.dispatchEvent(new Event("input"))});w.appendChild(bt)}
+  setTimeout(()=>grow(t),0);return w;
 }
 function resultBlock(a,b){
   const k=a.id+"."+b.id,w=document.createElement("div");
@@ -436,19 +450,27 @@ function homePage(){
   <h2>مقياس نستخدمه طوال الورشة</h2>
   <div class="card"><div>كلما حقق المخرج المعايير الأربعة أصبح أقرب للاستخدام الفعلي:</div>
   <div class="scale"><span class="pill">دقيق</span><span class="pill">واضح</span><span class="pill">قابل للتنفيذ</span><span class="pill">مخصص لي</span></div></div>
-  <p class="note noprint">كل ما تكتبه يُحفظ تلقائيًا على جهازك وفي هذا المتصفح فقط، ولا يُرسل لأي جهة. لحفظ نسخة دائمة اضغط «حفظ PDF» في أعلى الصفحة. وتجنّب إدخال بيانات سرية أو حساسة في أدوات الذكاء الاصطناعي.</p>`);
+  <p class="note noprint">كل ما تكتبه يُحفظ تلقائيًا على جهازك وفي هذا المتصفح فقط، ولا يُرسل لأي جهة. لحفظ نسخة دائمة اضغط «حفظ PDF» في أعلى الصفحة. وعلى الجوال: من قائمة المتصفح اختر «مشاركة» أو «طباعة» ثم «حفظ كـ PDF». وتجنّب إدخال بيانات سرية أو حساسة في أدوات الذكاء الاصطناعي.</p>`);
+  const cl=document.createElement("button");cl.type="button";cl.className="btn ghost sm noprint";cl.style.marginTop="10px";cl.textContent="مسح كل بياناتي من هذا الجهاز";
+  cl.addEventListener("click",()=>{if(cl.dataset.s!=="1"){cl.dataset.s="1";cl.textContent="اضغط مرة أخرى للتأكيد";setTimeout(()=>{cl.dataset.s="";cl.textContent="مسح كل بياناتي من هذا الجهاز"},3000);return}
+    try{localStorage.removeItem(KEY)}catch(e){}S={};location.reload()});
+  s.appendChild(cl);
   return s;
 }
 function actPage(a,idx){
   const s=document.createElement("section");s.className="page";s.id=a.id;
   s.appendChild(head(a.tag+" · "+a.axis,a.title,[a.min,"المطالبة "+a.p].concat(a.ext?["امتداد: بعد الورشة"]:[])));
   const i=document.createElement("div");i.className="intro";i.textContent=a.intro;s.appendChild(i);
-  const h=document.createElement("h2");h.textContent="المطالبة";h.style.marginTop="0";s.appendChild(h);
-  s.appendChild(promptCard(a.id,a.main,"مطالبة "+a.p+" · املأ الخانات المنقّطة ثم انسخ"));
-  const hn=document.createElement("p");hn.className="hint noprint";hn.textContent="اضغط أي خانة منقّطة واكتب فيها. تُحفظ تلقائيًا وتتكرر في المطالبات الأخرى لنفس النشاط.";s.appendChild(hn);
+  const pre=a.blocks.filter(b=>b.pre),post=a.blocks.filter(b=>!b.pre);
+  const h0=document.createElement("h2");h0.innerHTML='أولًا: مدخلاتك <span class="sub">تنتقل تلقائيًا إلى الخانات المنقّطة في المطالبة</span>';h0.style.marginTop="0";s.appendChild(h0);
+  pre.forEach(b=>s.appendChild(fieldBlock(a,b)));
+  const h=document.createElement("h2");h.textContent="ثانيًا: انسخ المطالبة";s.appendChild(h);
+  s.appendChild(promptCard(a.id,a.main,"مطالبة "+a.p));
+  const hn=document.createElement("p");hn.className="hint noprint";hn.textContent="الخانات المنقّطة تمتلئ من مدخلاتك أعلاه. ويمكنك الكتابة فيها مباشرة أيضًا.";s.appendChild(hn);
   const d=document.createElement("details");d.innerHTML="<summary>مطالبات إرشادية للمتابعة مع الذكاء الاصطناعي</summary>";
   a.guide.forEach((g,gi)=>d.appendChild(promptCard(a.id,g,"الخطوة "+(gi+1))));s.appendChild(d);
-  a.blocks.forEach(b=>s.appendChild({field:fieldBlock,result:resultBlock,table:tableBlock,checks:checksBlock}[b.t](a,b)));
+  const h2=document.createElement("h2");h2.textContent="ثالثًا: دوّن نتيجتك";s.appendChild(h2);
+  post.forEach(b=>s.appendChild({field:fieldBlock,result:resultBlock,table:tableBlock,checks:checksBlock}[b.t](a,b)));
   if(a.closing){const q=document.createElement("div");q.className="quote";q.textContent=a.closing;s.appendChild(q)}
   return s;
 }
@@ -482,7 +504,7 @@ order.forEach((o,i)=>{
   const nv=document.createElement("div");nv.className="nav noprint";
   const prev=order[i-1],next=order[i+1];
   nv.innerHTML=(prev?`<button class="btn ghost" type="button" data-go="${prev.id}">‹ السابق</button>`:"<span></span>")+(next?`<button class="btn" type="button" data-go="${next.id}">التالي ›</button>`:"<span></span>");
-  if(o.id!=="end")s.appendChild(nv);
+  s.appendChild(nv);
 });
 document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g)go(g.dataset.go)});
 function go(id,noPush){
