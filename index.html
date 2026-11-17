@@ -27,6 +27,7 @@
   --accent:#A6947A; --accent-ink:#1A2430; --gold-text:#C9B89C; --chip:#2B3A4A; --chip-line:#6B6252; --ok:#6CC9A0;
   --shadow:none; color-scheme:dark}
 
+[hidden]{display:none!important}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.75;
@@ -72,6 +73,7 @@ h1{font-size:clamp(26px,5.2vw,36px);line-height:1.35;margin:4px 0 6px;color:var(
 h2{font-size:19px;margin:30px 0 10px;color:var(--ink)}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
 .card+.card{margin-top:12px}
+.guides{display:grid;gap:12px;margin-top:14px}.guides .card+.card{margin-top:0}
 .ptag{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 .ptag span{font-weight:700;color:var(--gold-text);font-size:15px}
 .ptext{white-space:pre-wrap;margin:0;font-size:17px;line-height:2}
@@ -114,6 +116,8 @@ table.t td[contenteditable]:focus{box-shadow:inset 0 0 0 2px var(--gold-l)}
 .mx td,.mx th{padding:8px 10px;border-bottom:1px solid var(--line);text-align:start}
 .mx th{color:var(--gold-text);font-size:15px}
 .mx input{width:22px;height:22px;accent-color:var(--navy)}
+.pw{display:flex;align-items:center;gap:10px;min-width:150px}.pw b{min-width:3em;font-variant-numeric:tabular-nums}
+.pbar{flex:1;height:10px;border-radius:99px;background:var(--sand);border:1px solid var(--line);overflow:hidden}.pbar i{display:block;height:100%;width:0;background:var(--gold-l);border-radius:99px;transition:width .3s}
 .quote{margin:30px 0 0;padding:16px 18px;border-radius:12px;background:var(--navy);color:#fff;font-weight:500}
 :root[data-theme="dark"] .quote{background:#2B3A4A}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .quote{background:#2B3A4A}}
@@ -134,7 +138,7 @@ table.t td[contenteditable]:focus{box-shadow:inset 0 0 0 2px var(--gold-l)}
 @media print{
   body{background:#fff;color:#000;font-size:12.5pt;padding:0}
   :root{--bg:#fff;--surface:#fff;--sand:#F4F1EC;--ink:#111;--ink2:#444;--line:#cfcfcf;--gold-text:#7B6F5A;--chip:#fff;--chip-line:#A6947A;--accent:#2F4053;color-scheme:light}
-  .top,.nav,.btn,.rtools,details,.steps,.toast,.noprint,summary{display:none!important}
+  .top,.nav,.btn,.rtools,.guides,details,.steps,.toast,.noprint,summary{display:none!important}
   .page{display:block!important;padding:0;break-before:page}
   .page:first-of-type{break-before:auto}
   .print-logo{display:block;height:15mm;width:auto;margin:0 0 4mm auto}
@@ -146,7 +150,7 @@ table.t td[contenteditable]:focus{box-shadow:inset 0 0 0 2px var(--gold-l)}
   .tw{overflow:visible;border-color:#bbb}
   table.t{min-width:0}
   table.t th{background:#2F4053!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  table.t tr:nth-child(even) td,table.t td.fx,.pill,.intro,.quote,.chk:has(input:checked){-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  table.t tr:nth-child(even) td,table.t td.fx,.pill,.intro,.quote,.chk:has(input:checked),.pbar i{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .quote{background:#2F4053!important;color:#fff!important}
   .chip{border-style:solid;padding:0 6px}
   .chip:empty::before{color:#999}
@@ -208,7 +212,7 @@ const ACTS=[
   {t:"field",id:"final",label:"النسخة النهائية المقبولة بالنسبة لي",rows:5}]},
 {id:"a5",short:"مراجعة",tag:"النشاط 5",title:"مراجعة وتحسين الجودة",axis:"المحور الثالث · رفع كفاءة الإنجاز",min:"8 دقائق",p:"P05",
  intro:"استخدم الذكاء الاصطناعي «مراجعًا» لا «كاتبًا بديلًا». أعطه مخرج النشاط السابق واطلب نقده وفق معايير واضحة.",
- main:"راجع المخرج السابق بوصفك مراجعًا مهنيًا. قيّمه من حيث الوضوح، الدقة، الاختصار، وملاءمة الجمهور. لا تعِد كتابته مباشرة؛ أعطني الملاحظات أولًا، ثم اقترح تعديلات محددة.",
+ main:"راجع المخرج التالي بوصفك مراجعًا مهنيًا: [الصق المخرج]. قيّمه من حيث الوضوح، الدقة، الاختصار، وملاءمة الجمهور. لا تعِد كتابته مباشرة؛ أعطني الملاحظات أولًا، ثم اقترح تعديلات محددة.",
  guide:["راجع هذا المخرج من حيث الوضوح والدقة والاختصار وملاءمة الجمهور: [الصق المخرج].","لا تعد كتابة النص الآن؛ أعطني أولًا أهم 3 ملاحظات تحسين فقط.","رتّب ملاحظاتك من الأكثر أثرًا إلى الأقل أثرًا، وفسّر سبب كل ملاحظة.","بعد المراجعة، اقترح نسخة محسنة تطبق الملاحظات التي وافقت عليها فقط."],
  blocks:[{t:"field",pre:1,id:"out",map:["الصق المخرج"],label:"المخرج الذي سأراجعه",rows:4,sub:"اكتب أو الصق مخرجك هنا",from:"a4.final",fromLabel:"استخدم نسختي النهائية من النشاط 4"},{t:"result",id:"res",label:"ملاحظات المراجع"},
   {t:"table",id:"crit",label:"قراري في كل معيار",cols:["المعيار","ملاحظة المراجع","قراري"],fixed:["الوضوح","الدقة","الاختصار","ملاءمة الجمهور"]}],
@@ -364,9 +368,9 @@ function resultBlock(a,b){
   const t=document.createElement("textarea");t.id=k;t.rows=4;t.value=get(k);t.placeholder="الصق هنا…";
   const view=document.createElement("div");view.className="rview";view.hidden=true;
   const tools=document.createElement("div");tools.className="rtools";
-  const edit=document.createElement("button");edit.type="button";edit.className="btn ghost sm";
+  const edit=document.createElement("button");edit.type="button";edit.className="btn ghost sm";edit.textContent="عرض منسّق";edit.hidden=true;
   const clear=document.createElement("button");clear.type="button";clear.className="btn ghost sm";clear.textContent="مسح";
-  tools.append(edit,clear);
+  tools.hidden=true;tools.append(edit,clear);
   let mode="edit";
   function paint(force){
     const v=t.value.trim();
@@ -467,7 +471,7 @@ function actPage(a,idx){
   const h=document.createElement("h2");h.textContent="ثانيًا: انسخ المطالبة";s.appendChild(h);
   s.appendChild(promptCard(a.id,a.main,"مطالبة "+a.p));
   const hn=document.createElement("p");hn.className="hint noprint";hn.textContent="الخانات المنقّطة تمتلئ من مدخلاتك أعلاه. ويمكنك الكتابة فيها مباشرة أيضًا.";s.appendChild(hn);
-  const d=document.createElement("details");d.innerHTML="<summary>مطالبات إرشادية للمتابعة مع الذكاء الاصطناعي</summary>";
+  const d=document.createElement("div");d.className="guides";
   a.guide.forEach((g,gi)=>d.appendChild(promptCard(a.id,g,"الخطوة "+(gi+1))));s.appendChild(d);
   const h2=document.createElement("h2");h2.textContent="ثالثًا: دوّن نتيجتك";s.appendChild(h2);
   post.forEach(b=>s.appendChild({field:fieldBlock,result:resultBlock,table:tableBlock,checks:checksBlock}[b.t](a,b)));
@@ -478,13 +482,15 @@ function endPage(){
   const s=document.createElement("section");s.className="page";s.id="end";
   s.appendChild(head("المحور السابع · استخدام واعٍ ومسؤول","قبل أن تعتمد أي مخرج",[]));
   s.appendChild(checksBlock({id:"end"},{id:"resp",label:"اسأل نفسك",items:["هل توجد معلومة تحتاج تحققًا من مصدر موثوق؟","هل أدخلت بيانات شخصية أو سرية لا ينبغي مشاركتها؟","هل المخرج يمثلني فعلًا أم يبدو عامًا ومصطنعًا؟","هل أفهم المحتوى بما يكفي لأتحمل مسؤوليته؟","هل استخدمت الذكاء الاصطناعي لمساعدتي على التفكير أم لاستبدال التفكير؟"]}));
-  const rows=["خطة أولويات","خطة أسبوعية","مخرج دراسي/مهني محسّن","مسار تعلم شخصي","خطة استعداد مهني"];
   const w=document.createElement("div");w.innerHTML="<h2>حصيلة الورشة</h2>";
-  const tb=document.createElement("table");tb.className="mx";tb.innerHTML="<tr><th>المخرج</th><th>اكتمل</th><th>أحتاج تحسينه</th></tr>";
+  const tb=document.createElement("table");tb.className="mx";tb.innerHTML="<tr><th>المخرج</th><th>التنفيذ</th><th>أحتاج تحسينه</th></tr>";
   const st=get("end.sum",{});
-  rows.forEach((r,i)=>{const tr=document.createElement("tr");tr.innerHTML=`<td>${r}</td><td><input type="checkbox" aria-label="${r}: اكتمل"></td><td><input type="checkbox" aria-label="${r}: أحتاج تحسينه"></td>`;
-    [0,1].forEach(c=>{const cb=tr.querySelectorAll("input")[c];cb.checked=!!st[i+"_"+c];cb.addEventListener("change",()=>{const o=get("end.sum",{});o[i+"_"+c]=cb.checked;set("end.sum",o)})});tb.appendChild(tr)});
-  w.appendChild(tb);s.appendChild(w);
+  SUM.forEach(([name,ids],i)=>{const tr=document.createElement("tr");
+    tr.innerHTML=`<td>${name}</td><td><div class="pw"><div class="pbar"><i></i></div><b>0%</b></div></td><td><input type="checkbox" aria-label="${name}: أحتاج تحسينه"></td>`;
+    const cb=tr.querySelector("input");cb.checked=!!st[i+"_1"];cb.addEventListener("change",()=>{const o=get("end.sum",{});o[i+"_1"]=cb.checked;set("end.sum",o)});
+    tr.dataset.sum=i;tb.appendChild(tr)});
+  w.appendChild(tb);
+  const hn=document.createElement("p");hn.className="hint";hn.textContent="النسبة تُحسب تلقائيًا من عدد الخانات التي كتبتها في أنشطة كل مخرج.";w.appendChild(hn);s.appendChild(w);
   const h=document.createElement("h2");h.textContent="التزامي بعد الورشة";s.appendChild(h);
   s.appendChild(fieldBlock({id:"end"},{id:"h24",label:"خلال 24 ساعة سأستخدم الذكاء الاصطناعي في هذه المهمة",rows:2}));
   s.appendChild(fieldBlock({id:"end"},{id:"d7",label:"وخلال 7 أيام سأقيس أثره بهذه الطريقة",rows:2}));
@@ -493,6 +499,12 @@ function endPage(){
   b.innerHTML='<button class="btn" type="button" id="pdf2">حفظ دفتري PDF</button>';s.appendChild(b);
   return s;
 }
+
+const SUM=[["خطة أولويات",["a1"]],["خطة أسبوعية",["a2","a3"]],["مخرج دراسي/مهني محسّن",["a4","a5"]],["مسار تعلم شخصي",["a6","a7"]],["خطة استعداد مهني",["a8","a9"]],["مساعدي الشخصي",["a10"]]];
+function filled(v){return Array.isArray(v)?v.some(Boolean):(v&&typeof v==="object")?Object.keys(v).some(x=>x!=="n"&&String(v[x]).trim()):String(v==null?"":v).trim()!==""}
+function actItems(a){return a.blocks.filter(b=>!(b.sub&&b.sub.includes("اختيارية"))).map(b=>b.t==="field"&&b.map?a.id+".chip."+b.map[0]:a.id+"."+b.id)}
+function pct(ids){let n=0,d=0;ids.forEach(id=>{const a=ACTS.find(x=>x.id===id);actItems(a).forEach(k=>{d++;if(filled(S[k]))n++})});return d?Math.round(100*n/d):0}
+function updateSummary(){document.querySelectorAll("tr[data-sum]").forEach(tr=>{const v=pct(SUM[+tr.dataset.sum][1]);tr.querySelector(".pbar i").style.width=v+"%";tr.querySelector(".pw b").textContent=v+"%"})}
 const order=[{id:"home",label:"ابدأ",build:homePage}];
 ACTS.forEach(a=>order.push({id:a.id,label:a.short,num:a.tag.replace("النشاط ",""),ext:a.ext,build:()=>actPage(a)}));
 order.push({id:"end",label:"الختام",build:endPage});
@@ -514,7 +526,7 @@ function go(id,noPush){
   o.btn.scrollIntoView({inline:"center",block:"nearest"});window.scrollTo(0,0);
   o.el.querySelectorAll("textarea").forEach(grow);
 }
-function markDone(){
+function markDone(){updateSummary();
   order.forEach(o=>{if(o.id==="home"||o.id==="end")return;
     const has=Object.keys(S).some(k=>k.startsWith(o.id+".")&&k.indexOf(".chip.")<0&&(Array.isArray(S[k])?S[k].some(Boolean):typeof S[k]==="object"?Object.keys(S[k]).some(x=>x!=="n"&&S[k][x]):String(S[k]).trim()));
     o.btn.classList.toggle("done",has)})}
