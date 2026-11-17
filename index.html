@@ -443,7 +443,7 @@ function homePage(){
   const intro=document.createElement("div");intro.className="intro";
   intro.textContent="هذا الدفتر مساحة عمل شخصية، وليس ملخصًا نظريًا. اكتب فيه مهامك الحقيقية، وجرّب عليها، ثم عدّل المخرجات حتى تناسبك.";s.appendChild(intro);
   const g=document.createElement("div");g.className="home-grid";
-  [["name","الاسم",1],["major","التخصص",1]].forEach(([id,l,r])=>g.appendChild(fieldBlock({id:"home"},{id,label:l,rows:r})));
+  [["name","الاسم",1],["major","التخصص / المهنة",1]].forEach(([id,l,r])=>g.appendChild(fieldBlock({id:"home"},{id,label:l,rows:r})));
   s.appendChild(g);
   s.appendChild(fieldBlock({id:"home"},{id:"goal",label:"هدفي من الورشة في جملة واحدة",rows:2}));
   s.insertAdjacentHTML("beforeend",`<h2>كيف تستخدم الدفتر؟</h2>
