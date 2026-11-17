@@ -527,9 +527,8 @@ function go(id,noPush){
   o.el.querySelectorAll("textarea").forEach(grow);
 }
 function markDone(){updateSummary();
-  order.forEach(o=>{if(o.id==="home"||o.id==="end")return;
-    const has=Object.keys(S).some(k=>k.startsWith(o.id+".")&&k.indexOf(".chip.")<0&&(Array.isArray(S[k])?S[k].some(Boolean):typeof S[k]==="object"?Object.keys(S[k]).some(x=>x!=="n"&&S[k][x]):String(S[k]).trim()));
-    o.btn.classList.toggle("done",has)})}
+  order.forEach(o=>{const a=ACTS.find(x=>x.id===o.id);if(!a)return;
+    o.btn.classList.toggle("done",actItems(a).some(k=>filled(S[k])))})}
 function pdf(){const n=get("home.name","").trim();const t=document.title;document.title="دفتر المتدرب"+(n?" - "+n:"");
   const done=()=>{document.title=t;window.removeEventListener("afterprint",done)};window.addEventListener("afterprint",done);
   document.querySelectorAll("textarea").forEach(grow);
