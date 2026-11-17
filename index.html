@@ -60,6 +60,7 @@ button,input,textarea{font:inherit;color:inherit}
 .steps button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .steps button.on b{color:var(--accent-ink)}
 .steps button.ext{border-style:dashed}
+.steps button.prog::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:7px;height:7px;border-radius:50%;background:#E8892B}
 .steps button.done::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:7px;height:7px;border-radius:50%;background:var(--ok)}
 
 /* الصفحة */
@@ -528,7 +529,8 @@ function go(id,noPush){
 }
 function markDone(){updateSummary();
   order.forEach(o=>{const a=ACTS.find(x=>x.id===o.id);if(!a)return;
-    o.btn.classList.toggle("done",actItems(a).some(k=>filled(S[k])))})}
+    const v=pct([a.id]);o.btn.classList.toggle("done",v===100);o.btn.classList.toggle("prog",v>0&&v<100);
+    o.btn.title=v?("التنفيذ "+v+"%"):""})}
 function pdf(){const n=get("home.name","").trim();const t=document.title;document.title="دفتر المتدرب"+(n?" - "+n:"");
   const done=()=>{document.title=t;window.removeEventListener("afterprint",done)};window.addEventListener("afterprint",done);
   document.querySelectorAll("textarea").forEach(grow);
